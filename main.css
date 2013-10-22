@@ -1,0 +1,22 @@
+.reveal-modal {
+    position: fixed;
+}
+.reveal-modal.absolute {
+    position: absolute;
+}
+.reveal-modal.open {
+    visibility: visible;
+    display: block;
+}
+.reveal-modal-bg.open {
+    opacity: 1;
+    display: block;
+}
+section.section-container .title {
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+section.section-container > .active > .title {
+    font-weight: bold;
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>angular-foundation demos</title>
+    <link rel="stylesheet" href="lib/normalize.css" /> 
+    <link rel="stylesheet" href="lib/foundation.css" />
+    <link rel="stylesheet" href="main.css" />
+</head>
+<body ng-app="app" class="row">
+
+    <header><h1>angular-foundation demos</h1></header>
+
+    <tab-container>
+        <tab title="Accordions">
+            <accordion ng-init="closed = true">
+                <accordion-item title="Something amazing" default-closed>
+                    <p>What were you expecting?</p>
+                </accordion-item>
+                <accordion-item title="Another thing">
+                    <p>1234</p>
+                </accordion-item>
+                <accordion-item ng-repeat="item in data" title="{{ item.name }}" default-closed>
+                    {{ item.data }}
+                </accordion-item>
+            </accordion>
+        </tab>
+        <tab title="Modals">
+            <button ng-click="modal.closeme = true">Open?</button>
+            <modal name="closeme" ng-controller="ModalCancelController" ng-init="thismodal = 'closeme'">
+                <h3>Some awesome content</h3>
+                <p>and another paragraph</p>
+                <button ng-click="modal.closeme = false">Close?</button>
+            </modal>
+        </tab>
+    </tab-container>
+
+    <footer>
+        <p>Thanks for viewing me! <a href="http://github.com/venuatu/angular-foundation">Source</a></p>
+    </footer>
+
+    <modal-background></modal-background>
+    <script src="lib/angular.js"></script>
+    <script>
+    var app = angular.module('app', []);    
+    app.controller('ModalCancelController', function ($scope) {
+        $scope.$on('cancelModal', function () {// cancel modal is sent when a user clicks on the bacckground
+            $scope.modal[$scope.thismodal] = false;
+        });
+    });
+    app.run(function ($rootScope) {
+        $rootScope.data = [{name: 'that', data: 'that data'}, {name: 'boo', data: 'scary text'}];
+    });
+    </script>
+    <script src="accordion.js"></script>
+    <script src="modal.js"></script>
+    <script src="tabs.js"></script>
+</body>
+</html>
